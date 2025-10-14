@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Technologies — Emirhan Bıçkıcı</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v9.2.4/ol.css">
+  <script defer src="main.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/ol@v9.2.4/dist/ol.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="index.html">Emirhan<span>BC</span></a>
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+    <nav class="site-nav">
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a class="active" href="technologies.html">Technologies</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <h1 class="underline">Technologies</h1>
+    <p class="muted">Tabular list of tools with logos, and an OpenLayers demo map.</p>
+
+    <div class="table-wrap fade-in">
+      <table class="projects-table">
+        <thead>
+          <tr>
+            <th>Logo</th>
+            <th>Technology</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/html5.svg" alt="HTML5 logo" style="width:40px;height:40px"/></td>
+            <td><strong>HTML5</strong></td>
+            <td>Semantic markup and accessibility.</td>
+          </tr>
+          <tr>
+            <td><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/css3.svg" alt="CSS3 logo" style="width:40px;height:40px"/></td>
+            <td><strong>CSS3</strong></td>
+            <td>Layout, animations and responsive design.</td>
+          </tr>
+          <tr>
+            <td><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/javascript.svg" alt="JavaScript logo" style="width:40px;height:40px"/></td>
+            <td><strong>JavaScript</strong></td>
+            <td>DOM interactions and UI behaviors.</td>
+          </tr>
+          <tr>
+            <td><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/openlayers.svg" alt="OpenLayers logo" style="width:40px;height:40px"/></td>
+            <td><strong>OpenLayers</strong></td>
+            <td>Web maps with vector and tile layers.</td>
+          </tr>
+          <tr>
+            <td><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="GitHub logo" style="width:40px;height:40px"/></td>
+            <td><strong>Git & GitHub</strong></td>
+            <td>Version control and GitHub Pages hosting.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 id="map" class="mt underline">OpenLayers Map — Ankara / Beytepe</h2>
+    <p class="muted">Default center is Ankara. If you came from <em>See on Map</em>, the view focuses on <strong>Beytepe Campus</strong>.</p>
+
+    <div id="mapContainer">
+      <div id="mapCanvas" class="map"></div>
+      <div id="mapPopup" class="ol-popup">
+        <a href="#" id="popupCloser" class="ol-popup-closer"></a>
+        <div id="popupContent"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    © <span id="year"></span> Emirhan Bıçkıcı — <a class="link" href="mailto:myfromearth@gmail.com">myfromearth@gmail.com</a>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const { Map, View } = ol;
+      const { OSM, Vector: VectorSource } = ol.source;
+      const { Tile: TileLayer, Vector: VectorLayer } = ol.layer;
+      const { fromLonLat } = ol.proj;
+      const { Feature } = ol;
+      const { Point } = ol.geom;
+      const { Style, Circle: CircleStyle, Fill, Stroke } = ol.style;
+      const { Overlay } = ol;
+
+      // Default: Ankara
+      let centerLonLat = [32.8597, 39.9334];
+      let title = "Ankara";
+      let zoom = 11;
+
+      // Query param focus=beytepe
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('focus') === 'beytepe') {
+        centerLonLat = [32.7486, 39.8717]; // approx Beytepe Campus
+        title = "Beytepe Campus";
+        zoom = 15;
+      }
+
+      const center = fromLonLat(centerLonLat);
+
+      const base = new TileLayer({ source: new OSM() });
+
+      const marker = new Feature({ geometry: new Point(center), name: title });
+      // Visible red circle
+      marker.setStyle(new Style({
+        image: new CircleStyle({
+          radius: 12,
+          fill: new Fill({ color: 'rgba(239, 68, 68, 0.6)' }),
+          stroke: new Stroke({ color: '#991b1b', width: 3 })
+        })
+      }));
+
+      const vSource = new VectorSource({ features: [marker] });
+      const vLayer  = new VectorLayer({ source: vSource });
+
+      const map = new Map({
+        target: 'mapCanvas',
+        layers: [base, vLayer],
+        view: new View({ center, zoom })
+      });
+
+      // Popup
+      const container = document.getElementById('mapPopup');
+      const content   = document.getElementById('popupContent');
+      const closer    = document.getElementById('popupCloser');
+      const popup = new Overlay({ element: container, autoPan: { animation: { duration: 250 } } });
+      map.addOverlay(popup);
+
+      closer.onclick = function () { popup.setPosition(undefined); closer.blur(); return false; };
+
+      map.on('singleclick', (evt) => {
+        const feature = map.forEachFeatureAtPixel(evt.pixel, (f) => f);
+        if (feature) {
+          const coord = feature.getGeometry().getCoordinates();
+          content.innerHTML = `<strong>${feature.get('name') || 'Location'}</strong>`;
+          popup.setPosition(coord);
+        } else {
+          popup.setPosition(undefined);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Projects — Emirhan Bıçkıcı</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="main.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="index.html">Emirhan<span>BC</span></a>
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+    <nav class="site-nav">
+      <a href="about.html">About</a>
+      <a class="active" href="projects.html">Projects</a>
+      <a href="technologies.html">Technologies</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <h1 class="underline">Projects</h1>
+    <p class="muted">A visual table with two projects.</p>
+
+    <div class="table-wrap fade-in">
+      <table class="projects-table">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Project</th>
+            <th>Description</th>
+            <th>Link</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><img src="images/tetris.jpg" alt="Tetris project" /></td>
+            <td><strong>Tetris Game</strong></td>
+            <td>Coding a simple Tetris game from scratch.</td>
+            <td><a href="https://youtu.be/MKSwxEpWYPQ" target="_blank" class="link" rel="noopener">Watch on YouTube →</a></td>
+          </tr>
+          <tr>
+            <td><img src="images/beytepe_map.jpg" alt="Beytepe Campus Map" /></td>
+            <td><strong>Beytepe Campus Map</strong></td>
+            <td>A cartography assignment to map a selected area of Hacettepe Beytepe Campus.</td>
+            <td><a href="technologies.html?focus=beytepe#map" class="link">See on Map →</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    © <span id="year"></span> Emirhan Bıçkıcı
+  </footer>
+</body>
+</html>

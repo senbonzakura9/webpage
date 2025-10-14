@@ -1,0 +1,96 @@
+:root{
+  --snap:#f06952;      /* stronger peach (aslanağzı ton) */
+  --snap2:#ffb39e;
+  --snap3:#ff8fa3;
+  --text:#111218;
+  --muted:#4b5563;
+  --primary:#0f62fe;
+  --accent:#0fb981;
+  --card:#ffffff;
+  --border:#e5e7eb;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial;
+  color:var(--text);
+  background: linear-gradient(120deg, var(--snap), var(--snap2), var(--snap3));
+  background-size: 250% 250%;
+  animation: bgMove 10s ease-in-out infinite;
+}
+@keyframes bgMove{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none;
+  background:
+    radial-gradient(700px 380px at 12% -10%, rgba(255,255,255,0.28), transparent 60%),
+    radial-gradient(520px 260px at 88% 110%, rgba(255,255,255,0.18), transparent 60%);
+  animation: floatGlow 10s ease-in-out infinite alternate;
+}
+@keyframes floatGlow{from{transform:translateY(0)} to{transform:translateY(-10px)}}
+
+/* Header & Nav (no Contact button) */
+.site-header{
+  position:sticky; top:0; z-index:40;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:12px 20px; background:rgba(255,255,255,.68); backdrop-filter: blur(8px); border-bottom:1px solid var(--border);
+}
+.logo{color:#111; text-decoration:none; font-weight:800; letter-spacing:.3px}
+.logo span{color:var(--primary)}
+.nav-toggle{display:none; background:none; border:none; color:#111; font-size:22px}
+.site-nav{display:flex; gap:14px; align-items:center}
+.site-nav a{color:#111827; text-decoration:none; padding:8px 10px; border-radius:10px}
+.site-nav a:hover{background:rgba(17,24,39,.06)}
+.site-nav a.active{background:rgba(17,24,39,.08); color:#000}
+
+/* Left-aligned hero */
+.hero{padding:32px 20px; max-width:1100px; margin:0; text-align:left}
+.hero .glow{ font-size: clamp(28px, 5vw, 54px); text-shadow:none }
+.fade-in{opacity:0; animation: fade .9s ease forwards .2s}
+@keyframes fade{to{opacity:1}}
+.hero-cta{display:flex; gap:12px; justify-content:flex-start; margin-top:16px}
+.btn{background:var(--primary); color:#fff!important; padding:8px 14px; border-radius:12px; font-weight:700}
+.btn-ghost{background:transparent; border:1px solid var(--primary); color:#111!important}
+
+/* Cards */
+.cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; max-width:1100px; margin:8px 20px 24px}
+.card{background:var(--card); border:1px solid var(--border); border-radius:20px; padding:16px; box-shadow: 0 10px 30px rgba(0,0,0,.05)}
+.link{color:var(--primary); text-decoration:none}
+.link:hover{text-decoration:underline}
+
+/* Pages */
+.page{max-width:1100px; margin:0 20px; padding:24px 0}
+.underline{display:inline-block; border-bottom:2px solid var(--accent); padding-bottom:6px}
+.muted{color:var(--muted)}
+
+/* About */
+.about-grid{display:grid; grid-template-columns:190px 1fr; gap:18px; align-items:start}
+.about-photo{width:190px; height:230px; border-radius:16px; object-fit:cover; border:1px solid var(--border); box-shadow:0 8px 20px rgba(0,0,0,.08)}
+
+/* Projects: bigger images */
+.table-wrap{overflow:auto; border:1px solid var(--border); border-radius:14px; background:rgba(255,255,255,.6)}
+.projects-table{width:100%; border-collapse:collapse; min-width:880px}
+.projects-table th, .projects-table td{padding:12px; border-bottom:1px solid var(--border); vertical-align:middle; text-align:left}
+.projects-table img{width:320px; height:196px; object-fit:cover; border-radius:12px; border:1px solid var(--border)}
+.projects-table thead th{position:sticky; top:0; background:rgba(255,255,255,.85)}
+
+/* Map */
+#mapContainer{position:relative; margin-top:10px; border:1px solid var(--border); border-radius:14px; overflow:hidden; background:#fff}
+.map{width:100%; height:540px}
+.ol-popup{position:absolute; background:white; padding:8px 12px; border-radius:10px; border:1px solid #ccc; bottom:12px; left:12px; min-width:140px; color:#111}
+.ol-popup-closer{position:absolute; top:4px; right:6px; text-decoration:none}
+
+/* Footer */
+.site-footer{padding:24px 20px; text-align:left; color:#374151}
+
+/* Responsive */
+@media (max-width: 800px){
+  .nav-toggle{display:block}
+  .site-nav{position:absolute; inset:56px 12px auto 12px; display:none; flex-direction:column; background:#fff; border:1px solid var(--border); border-radius:12px; padding:10px}
+  .site-nav.open{display:flex}
+  .about-grid{grid-template-columns:1fr}
+}

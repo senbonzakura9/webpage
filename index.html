@@ -1,12 +1,58 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Emirhan Bıçkıcı — Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="main.js"></script>
+  <meta name="description" content="Portfolio — About, Projects, Technologies" />
 </head>
 <body>
-    <h1>emo</h1>
-    <p>Lorem, ipsum dolor sitasdasdasdasdasdasd amet consasdfsdafsdafasdewfweectetur adipisicing elit. Ea quasi dicta repellendus! Laborum unde vero, maiores voluptatem eos esse labore aspernatur sit voluptas quia ratione, accusantium omnis asperiores, odit tempora?
+  <header class="site-header">
+    <a class="logo" href="index.html">Emirhan<span>BC</span></a>
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+    <nav class="site-nav">
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="technologies.html">Technologies</a>
+    </nav>
+  </header>
+
+  <main class="hero">
+    <h1 class="glow">Hi, I'm <span>Emirhan Bıçkıcı</span></h1>
+    <p class="fade-in">
+      I am a 4th-year Geomatics Engineering student at Hacettepe University. 
+      Check the sections below to learn <strong>about me</strong>, see my <strong>projects</strong>, 
+      and explore the <strong>technologies</strong> I use.
     </p>
+    <div class="hero-cta">
+      <a class="btn" href="about.html">About</a>
+      <a class="btn btn-ghost" href="projects.html">Projects</a>
+      <a class="btn" href="technologies.html">Technologies</a>
+    </div>
+  </main>
+
+  <section class="cards">
+    <article class="card">
+      <h3>About</h3>
+      <p>Short bio, education and contact details.</p>
+      <a href="about.html" class="link">Explore →</a>
+    </article>
+    <article class="card">
+      <h3>Projects</h3>
+      <p>A visual table with my recent work.</p>
+      <a href="projects.html" class="link">Explore →</a>
+    </article>
+    <article class="card">
+      <h3>Technologies</h3>
+      <p>Tools I use and an OpenLayers demo map.</p>
+      <a href="technologies.html" class="link">Explore →</a>
+    </article>
+  </section>
+
+  <footer class="site-footer">
+    © <span id="year"></span> Emirhan Bıçkıcı — <a class="link" href="mailto:myfromearth@gmail.com">myfromearth@gmail.com</a>
+  </footer>
 </body>
 </html>
