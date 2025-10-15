@@ -1,4 +1,4 @@
-:root{
+:root{--panel:#ffe6dc;
   --snap:#f06952;      /* stronger peach (aslanağzı ton) */
   --snap2:#ffb39e;
   --snap3:#ff8fa3;
@@ -6,7 +6,7 @@
   --muted:#4b5563;
   --primary:#0f62fe;
   --accent:#0fb981;
-  --card:#ffffff;
+  --card:#fff1eb;
   --border:#e5e7eb;
 }
 
@@ -38,12 +38,12 @@ body::before{
   position:sticky; top:0; z-index:40;
   display:flex; align-items:center; justify-content:space-between;
   padding:12px 20px; background:rgba(255,255,255,.68); backdrop-filter: blur(8px); border-bottom:1px solid var(--border);
-}
+ box-shadow: 0 6px 20px rgba(0,0,0,.08); border-radius: 0 0 var(--radius) var(--radius); }
 .logo{color:#111; text-decoration:none; font-weight:800; letter-spacing:.3px}
 .logo span{color:var(--primary)}
 .nav-toggle{display:none; background:none; border:none; color:#111; font-size:22px}
 .site-nav{display:flex; gap:14px; align-items:center}
-.site-nav a{color:#111827; text-decoration:none; padding:8px 10px; border-radius:10px}
+.site-nav a{color:#1f2937; text-decoration:none; padding:8px 14px; border-radius:9999px; background:rgba(255,255,255,.6)}
 .site-nav a:hover{background:rgba(17,24,39,.06)}
 .site-nav a.active{background:rgba(17,24,39,.08); color:#000}
 
@@ -53,12 +53,12 @@ body::before{
 .fade-in{opacity:0; animation: fade .9s ease forwards .2s}
 @keyframes fade{to{opacity:1}}
 .hero-cta{display:flex; gap:12px; justify-content:flex-start; margin-top:16px}
-.btn{background:var(--primary); color:#fff!important; padding:8px 14px; border-radius:12px; font-weight:700}
-.btn-ghost{background:transparent; border:1px solid var(--primary); color:#111!important}
+.btn{background:#fff5ef; color:#111!important; padding:10px 16px; border-radius:9999px; font-weight:700; border:1.5px solid #f08a4b; box-shadow:0 3px 0 #e8792f20; transition: all var(--transition) }
+.btn-ghost{background:transparent; border:1.5px solid #f08a4b; color:#111!important; border-radius:9999px; transition: all var(--transition) }
 
 /* Cards */
 .cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; max-width:1100px; margin:8px 20px 24px}
-.card{background:var(--card); border:1px solid var(--border); border-radius:20px; padding:16px; box-shadow: 0 10px 30px rgba(0,0,0,.05)}
+.card{background:var(--panel); border:1px solid var(--border); border-radius:20px; padding:16px; box-shadow: 0 10px 30px rgba(0,0,0,.05)}
 .link{color:var(--primary); text-decoration:none}
 .link:hover{text-decoration:underline}
 
@@ -72,7 +72,7 @@ body::before{
 .about-photo{width:190px; height:230px; border-radius:16px; object-fit:cover; border:1px solid var(--border); box-shadow:0 8px 20px rgba(0,0,0,.08)}
 
 /* Projects: bigger images */
-.table-wrap{overflow:auto; border:1px solid var(--border); border-radius:14px; background:rgba(255,255,255,.6)}
+.table-wrap{overflow:auto; border:1px solid var(--border); border-radius:14px; background:rgba(255, 228, 214, .65)}
 .projects-table{width:100%; border-collapse:collapse; min-width:880px}
 .projects-table th, .projects-table td{padding:12px; border-bottom:1px solid var(--border); vertical-align:middle; text-align:left}
 .projects-table img{width:320px; height:196px; object-fit:cover; border-radius:12px; border:1px solid var(--border)}
@@ -94,3 +94,53 @@ body::before{
   .site-nav.open{display:flex}
   .about-grid{grid-template-columns:1fr}
 }
+
+
+/* ---- Enhancements ---- */
+:root{--panel:#ffe6dc;
+  --radius: 22px;
+  --radius-lg: 28px;
+  --radius-sm: 14px;
+  --transition: 220ms ease;
+}
+
+*{scroll-behavior:smooth}
+
+.card, .table-wrap, .about-photo, .map, #mapContainer,
+.projects-table img, .btn, .site-nav a, .site-header{
+  border-radius: var(--radius);
+  transition: all var(--transition);
+ box-shadow: 0 6px 20px rgba(0,0,0,.08); border-radius: 0 0 var(--radius) var(--radius); }
+
+.projects-table{ border: 2px solid var(--border); border-radius: var(--radius); }
+#mapContainer{ border: 2px solid var(--border); border-radius: var(--radius-lg); box-shadow: 0 12px 30px rgba(0,0,0,.12) }
+
+/* Image hover zoom */
+.projects-table img{
+  transform: translateZ(0);
+}
+.projects-table img:hover{
+  transform: scale(1.06);
+  box-shadow: 0 10px 24px rgba(0,0,0,.18);
+}
+
+/* Card hover */
+.card:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(0,0,0,.12);
+}
+
+/* Buttons & nav links hover focus */
+.btn:hover{ filter: brightness(1.06); transform: translateY(-1px) }
+.site-nav a:hover{ transform: translateY(-1px) }
+
+/* Smooth table row hover */
+.projects-table tbody tr{ transition: background-color var(--transition) }
+.projects-table tbody tr:hover{ background: rgba(0,0,0,.04) }
+
+/* Subtle entrance animation */
+@keyframes rise {
+  from{ opacity:0; transform: translateY(10px); }
+  to{ opacity:1; transform: translateY(0); }
+}
+.hero, .cards, .page{ animation: rise 420ms ease both }
