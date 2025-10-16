@@ -40,10 +40,10 @@
             <td><a href="https://youtu.be/MKSwxEpWYPQ" target="_blank" class="link" rel="noopener">Watch on YouTube →</a></td>
           </tr>
           <tr>
-            <td><img src="beytepe_map.png" alt="Beytepe Campus Map" /></td>
+            <td><img src="beytepe_map.png" alt="Beytepe Campus Map"  id="beytepeThumb" /></td>
             <td><strong>Beytepe Campus Map</strong></td>
             <td>A cartography assignment to map a selected area of Hacettepe Beytepe Campus. 
-              Approximately 250 points were surveyed to produce the map.</td>
+              Approximately 250 points were surveyed to produce the map. <strong>Click the photo to view it larger.</strong>     
             <td><a href="technologies.html?focus=beytepe#map" class="link">See on Map →</a></td>
           </tr>
         </tbody>
@@ -54,5 +54,42 @@
   <footer class="site-footer">
     © <span id="year"></span> Emirhan Bıçkıcı
   </footer>
+
+<!-- Lightbox Modal for Beytepe Map -->
+<div id="beytepeModal" class="lightbox-overlay" aria-hidden="true">
+  <div class="lightbox-content" role="dialog" aria-modal="true" aria-label="Beytepe Campus Map">
+    <button class="lightbox-close" aria-label="Close">&times;</button>
+    <img src="beytepe_map.png" alt="Beytepe Campus Map - enlarged" class="lightbox-image">
+  </div>
+</div>
+
+
+<script>
+(function(){
+  var thumb = document.getElementById('beytepeThumb');
+  var modal = document.getElementById('beytepeModal');
+  if (!thumb || !modal) return;
+  var closeBtn = modal.querySelector('.lightbox-close');
+  var overlayClick = function(e){
+    if (e.target === modal) modal.classList.remove('open');
+  };
+  thumb.style.cursor = 'zoom-in';
+  thumb.addEventListener('click', function(){
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+  });
+  closeBtn.addEventListener('click', function(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+  });
+  modal.addEventListener('click', overlayClick);
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') { modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); }
+  });
+})();
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.birds.min.js"></script>
 </body>
 </html>

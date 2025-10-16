@@ -8,3 +8,29 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => nav.classList.toggle('open'));
   }
 });
+
+// === Vanta Birds Background (global) ===
+(function(){
+  function startVanta(){
+    if (!window.VANTA) return;
+    try { window.__vanta && window.__vanta.destroy && window.__vanta.destroy(); } catch(e){}
+    window.__vanta = window.VANTA.BIRDS({
+      el: "body",
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      scale: 1.00,
+      scaleMobile: 1.00,
+      backgroundAlpha: 0.0,
+      color1: 0xa1148,
+      color2: 0x101061
+    });
+  }
+  if (document.readyState === "complete") {
+    startVanta();
+  } else {
+    window.addEventListener("load", startVanta);
+  }
+})();

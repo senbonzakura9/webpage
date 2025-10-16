@@ -147,5 +147,30 @@
       });
     });
   </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.birds.min.js"></script>
+  <script>
+    (function initVanta(){
+      if (!window.VANTA || !document.body) { 
+        // Retry once after load if VANTA isn't ready yet
+        window.addEventListener('load', initVanta, { once: true });
+        return;
+      }
+      try{
+        window.__vanta && window.__vanta.destroy && window.__vanta.destroy();
+      }catch(e){}
+      window.__vanta = window.VANTA.BIRDS({
+        el: document.body,
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        scale: 1.00,
+        scaleMobile: 1.00,
+        backgroundAlpha: 0.0
+      });
+    })();
+  </script>
 </body>
 </html>
