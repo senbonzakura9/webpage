@@ -31,6 +31,7 @@
             <th>Logo</th>
             <th>Technology</th>
             <th>Description</th>
+             <th>Links</th>
           </tr>
         </thead>
         <tbody>
@@ -38,27 +39,45 @@
             <td><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/html5.svg" alt="HTML5 logo" style="width:40px;height:40px"/></td>
             <td><strong>HTML5</strong></td>
             <td>Semantic markup and accessibility.</td>
+            <td><a href="https://html5.org/" target="_blank" class="link" rel="noopener">html5.org →</a></td>
           </tr>
           <tr>
             <td><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/css3.svg" alt="CSS3 logo" style="width:40px;height:40px"/></td>
             <td><strong>CSS3</strong></td>
             <td>Layout, animations and responsive design.</td>
+            <td><a href="https://www.w3schools.com/css/" target="_blank" class="link" rel="noopener">css3 →</a></td>
           </tr>
           <tr>
             <td><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/javascript.svg" alt="JavaScript logo" style="width:40px;height:40px"/></td>
             <td><strong>JavaScript</strong></td>
             <td>DOM interactions and UI behaviors.</td>
+            <td><a href="https://js.org/index.html" target="_blank" class="link" rel="noopener">js.org →</a></td>
           </tr>
           <tr>
             <td><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/openlayers.svg" alt="OpenLayers logo" style="width:40px;height:40px"/></td>
             <td><strong>OpenLayers</strong></td>
             <td>Web maps with vector and tile layers.</td>
+            <td><a href="https://openlayers.org/" target="_blank" class="link" rel="noopener">openlayers.org →</a></td>
           </tr>
           <tr>
             <td><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="GitHub logo" style="width:40px;height:40px"/></td>
             <td><strong>Git & GitHub</strong></td>
             <td>Version control and GitHub Pages hosting.</td>
+            <td><a href="https://github.com/" target="_blank" class="link" rel="noopener">github.com →</a></td>
           </tr>
+          <tr>
+            <td><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" style="width:40px;height:40px"/></td>
+            <td><strong>Python</strong></td>
+            <td>General-purpose programming language widely used for data analysis, GIS, and automation.</td>
+            <td><a href="https://www.python.org" target="_blank" class="link" rel="noopener">python.org →</a></td>
+          </tr>
+          <tr>
+            <td><img src="qgis.png"  alt="QGIS" style="width:40px;height:40px"/></td>
+            <td><strong>QGIS</strong></td>
+            <td>Open-source GIS platform for spatial data editing, analysis, and map production.</td>
+            <td><a href="https://qgis.org" target="_blank" class="link" rel="noopener">qgis.org →</a></td>
+          </tr>
+
         </tbody>
       </table>
     </div>
@@ -98,7 +117,7 @@
       // Query param focus=beytepe
       const params = new URLSearchParams(window.location.search);
       if (params.get('focus') === 'beytepe') {
-        centerLonLat = [32.7486, 39.8717]; // approx Beytepe Campus
+        centerLonLat = [32.730969, 39.866493]; // approx Beytepe Campus
         title = "Beytepe Campus";
         zoom = 15;
       }
