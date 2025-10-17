@@ -24,8 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
       scale: 1.00,
       scaleMobile: 1.00,
       backgroundAlpha: 0.0,
-      color1: 0xa1148,
-      color2: 0x101061
+      color1: 0x1b28d4,
+      color2: 0xd20404,
+      colorMode: "lerp"
     });
   }
   if (document.readyState === "complete") {
